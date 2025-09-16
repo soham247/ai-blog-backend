@@ -7,7 +7,7 @@ from bson import ObjectId
 from bson.errors import InvalidId
 from pymongo.errors import PyMongoError
 
-blog_root = APIRouter(prefix="/blog")
+blog_root = APIRouter(prefix="/blog", tags=["blog"])
 
 @blog_root.post("/")
 def create_blog(doc: Blog):

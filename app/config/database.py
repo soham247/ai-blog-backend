@@ -7,6 +7,7 @@ uri = dotenv_values(".env")['MONGO_URI']
 client = MongoClient(uri, server_api = ServerApi('1'))
 db = client.blog_fastapi
 blogs_collection = db["blogs"]
+users_collection = db["users"]
 
 try:
     client.admin.command('ping')
