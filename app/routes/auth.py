@@ -42,8 +42,8 @@ async def user_login(user: UserLoginSchema = Body(...)):
         
         if not verify_password(user.password, db_user["password"]):
             return {"error": "Invalid email or password"}
-        
-        return sign_jwt(user.email)
-        
+
+        return sign_jwt(db_user["_id"].__str__())
+
     except Exception as e:
         return {"error": str(e)}

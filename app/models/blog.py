@@ -4,7 +4,7 @@ class Blog(BaseModel):
     title: str
     sub_title: str
     content: str
-    author: str
+    author: str | None = None  # Make optional since it will be set from JWT token
     tags: list
     
 class UpdateBlog(BaseModel):
@@ -13,4 +13,3 @@ class UpdateBlog(BaseModel):
     content: str | None = None
     author: str | None = None
     tags: list | None = None
-    
