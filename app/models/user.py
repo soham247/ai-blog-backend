@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr, Field
+from typing import Optional
 
 class UserSchema(BaseModel):
     fullname: str = Field(...)
@@ -25,3 +26,22 @@ class UserLoginSchema(BaseModel):
                 "password": "weakpassword"
             }
         }
+
+class RefreshTokenSchema(BaseModel):
+    refresh_token: str = Field(..., description="The refresh token to use for generating a new access token")
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+            }
+        }
+
+class TokenResponseSchema(BaseModel):
+    access_token: str
+    refresh_token: str
+    token_type: str = "bearer"
+
+class AccessTokenResponseSchema(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
